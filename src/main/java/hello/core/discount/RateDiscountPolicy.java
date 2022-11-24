@@ -5,14 +5,14 @@ import hello.core.member.Member;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FixDiscountPolicy implements DiscountPolicy {
+public class RateDiscountPolicy implements DiscountPolicy {
 
-    private static final int DISCOUNT_FIX_AMOUNT = 1000;
+    private final int discountPercent = 10;
 
     @Override
     public int discount(Member member, int price) {
         if (member.getGrade() == Grade.VIP) {
-            return DISCOUNT_FIX_AMOUNT;
+            return price * discountPercent / 100;
         } else {
             return 0;
         }
